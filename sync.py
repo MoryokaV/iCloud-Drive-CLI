@@ -5,6 +5,7 @@ import os
 import shutil
 import platform
 import getpass
+import extractor
 
 global drive_path
 script_path = sys.argv[0]
@@ -21,7 +22,8 @@ def initialize():
             print("iCloud Drive is not enabled in System Preferences.")
             sys.exit()
     elif OS == "Windows":
-        drive_path = ""
+        username = getpass.getuser()
+        drive_path = "C:/Users/" + username + "/iCloudDrive"
     else:
         print("Your OS is not compatible with this script.")
         sys.exit()
@@ -30,6 +32,9 @@ def initialize():
     if not os.path.exists(drive_path):
         os.mkdir(drive_path)
         print("init: 'Transfer' directory has been created in your iCloud Drive.\n")
+
+    print("@ iCloud Drive API \n")
+
 
 def helpPopup():
     print("[###] iCloud Drive CLI - Code by Vlaviano\n")
@@ -40,8 +45,13 @@ def helpPopup():
 
     sys.exit()
 
+
 def selector():
-    cmd = str(sys.argv[1])
+    try:
+        cmd = str(sys.argv[1])
+    except IndexError as e:
+        print("ERROR: The script must be run with arguments. Type 'help' for more details.")
+        sys.exit()
 
     if cmd == "help":
         helpPopup()
@@ -50,7 +60,7 @@ def selector():
     elif cmd == "download":
         print("download")
     elif cmd == "root":
-        print("root")
+        extractor.root(drive_path)    
     elif cmd == "delete":
         print("delete")
     else:
