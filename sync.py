@@ -24,9 +24,14 @@ def initialize():
     elif OS == "Windows":
         username = getpass.getuser()
         drive_path = "C:/Users/" + username + "/iCloudDrive"
+
+        if not os.path.exists(drive_path):
+            print("iCloud Drive is not installed on your computer.")
+            sys.exit()
     else:
         print("Your OS is not compatible with this script.")
         sys.exit()
+    
     
     drive_path += "/Transfer"
     if not os.path.exists(drive_path):
@@ -45,6 +50,14 @@ def helpPopup():
 
     sys.exit()
 
+def retrieveFileArg():
+    try:
+        filename = str(sys.argv[2])
+    except IndexError as e:
+        print("ERROR: File name is missing!")
+        sys.exit()
+    
+    return filename 
 
 def selector():
     try:
@@ -62,7 +75,9 @@ def selector():
     elif cmd == "root":
         extractor.root(drive_path)    
     elif cmd == "delete":
-        print("delete")
+        filename = retrieveFileArg()
+        
+        extractor.delete(drive_path, filename)
     else:
         print("Unknown command. Type 'help' for more details.")
 
