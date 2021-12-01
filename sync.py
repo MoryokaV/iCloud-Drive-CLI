@@ -6,6 +6,7 @@ import shutil
 import platform
 import getpass
 import extractor
+import transfer
 
 global drive_path
 script_path = sys.argv[0]
@@ -69,15 +70,22 @@ def selector():
     if cmd == "help":
         helpPopup()
     elif cmd == "upload":
-        print("upload")
+        filename = retrieveFileArg()
+        filepath = os.path.abspath(retrieveFileArg())
+        
+        extractor.search(filepath, filename)
+        transfer.upload(drive_path, filepath)
     elif cmd == "download":
         print("download")
     elif cmd == "root":
         extractor.root(drive_path)    
     elif cmd == "delete":
         filename = retrieveFileArg()
-        
-        extractor.delete(drive_path, filename)
+        filepath = os.path.join(drive_path, filename)
+    
+        extractor.search(filepath, filename)
+        extractor.displayItemSize(filepath)
+        extractor.delete(filepath, filename)
     else:
         print("Unknown command. Type 'help' for more details.")
 

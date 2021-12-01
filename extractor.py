@@ -13,13 +13,12 @@ def root(drive_path):
         for file in root:
             print(file)
 
-def search(path):
-    if os.path.exists(path):
-        return True
-    else:
-        return False
+def search(path, filename):
+    if not os.path.exists(path):
+        print("ERROR: Incorrect file name '" + filename + "'")
+        sys.exit()
 
-def getItemSize(filepath):
+def displayItemSize(filepath):
     filesize = 0
     if os.path.isdir(filepath):
         for path, dirs, files in os.walk(filepath):
@@ -36,15 +35,7 @@ def getItemSize(filepath):
     else:
         print("Item size: " + "{:.2f}".format(filesize / 1024**2) + "MiB")
 
-def delete(drive_path, filename):
-    filepath = os.path.join(drive_path, filename)
-    
-    if not search(filepath):
-        print("File '" + filename + "' doesn't exist!")
-        sys.exit()
-        
-    getItemSize(filepath)
-    
+def delete(filepath, filename):
     option = str(input("\033[1m" + ":: Are you sure you want to delete '" + filename + "' ? [Y/n] " + "\033[0m"))
 
     if option == "Y" or option == "y":
