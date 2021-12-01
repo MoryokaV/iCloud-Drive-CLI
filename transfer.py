@@ -4,10 +4,11 @@ import shutil
 import extractor
 import os
 
-def upload(drive, file):
+def upload(drive, file, filename):
     if os.path.isfile(file):
         shutil.copy(file, drive)
     else:
+        drive += "/" + filename
         shutil.copytree(file, drive)
         
     print("The item has been uploaded.")

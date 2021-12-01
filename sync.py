@@ -74,7 +74,7 @@ def selector():
         filepath = os.path.abspath(retrieveFileArg())
         
         extractor.search(filepath, filename)
-        transfer.upload(drive_path, filepath)
+        transfer.upload(drive_path, filepath, filename)
     elif cmd == "download":
         print("download")
     elif cmd == "root":
