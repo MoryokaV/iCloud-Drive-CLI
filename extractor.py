@@ -36,7 +36,8 @@ def displayItemSize(filepath):
         print("Item size: " + "{:.2f}".format(filesize / 1024**2) + "MiB")
 
 def delete(filepath, filename):
-    option = str(input("\033[1m" + ":: Are you sure you want to delete '" + filename + "' ? [Y/n] " + "\033[0m"))
+    print("")
+    option = str(input("\033[1m" + ":: Do you want to delete '" + filename + "' ? [Y/n] " + "\033[0m"))
 
     if option == "Y" or option == "y":
         if os.path.isdir(filepath):
@@ -44,7 +45,7 @@ def delete(filepath, filename):
         else:
             os.remove(filepath)
 
-        print("\nThe item has been erased.")
+        print("The item has been erased.")
     elif option == "N" or option == "n":
         sys.exit()
     else:

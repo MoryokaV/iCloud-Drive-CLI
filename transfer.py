@@ -9,14 +9,20 @@ def upload(drive, file, filename):
         shutil.copy(file, drive)
     else:
         drive += "/" + filename
+        extractor.displayItemSize(file)
         shutil.copytree(file, drive)
         
-    print("The item has been uploaded.")
+    print("Uploaded finished!")
 
-def download(file, local):
-    #option = str(input("Delete item from cloud after download? [Y/n] "))
-    
+def download(file, filename, local):
     if os.path.isfile(file):
         shutil.copy(file, local)
     else:
+        local += "/" + filename
+
+        extractor.displayItemSize(file)
         shutil.copytree(file, local)
+
+    print("Download finished!")
+
+    extractor.delete(file, filename)

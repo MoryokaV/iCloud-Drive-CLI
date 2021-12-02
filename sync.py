@@ -74,9 +74,16 @@ def selector():
         filepath = os.path.abspath(retrieveFileArg())
         
         extractor.search(filepath, filename)
+        extractor.displayItemSize(filepath)
         transfer.upload(drive_path, filepath, filename)
     elif cmd == "download":
-        print("download")
+        filename = retrieveFileArg()
+        filepath = drive_path + "/" + filename
+        local_space = os.getcwd()
+
+        extractor.search(filepath, filename)
+        extractor.displayItemSize(filepath)
+        transfer.download(filepath, filename, local_space)
     elif cmd == "root":
         extractor.root(drive_path)    
     elif cmd == "delete":
