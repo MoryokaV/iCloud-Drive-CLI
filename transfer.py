@@ -9,7 +9,6 @@ def upload(drive, file, filename):
         shutil.copy(file, drive)
     else:
         drive += "/" + filename
-        extractor.displayItemSize(file)
         shutil.copytree(file, drive)
         
     print("Uploaded finished!")
@@ -19,8 +18,6 @@ def download(file, filename, local):
         shutil.copy(file, local)
     else:
         local += "/" + filename
-
-        extractor.displayItemSize(file)
         shutil.copytree(file, local)
 
     print("Download finished!")
