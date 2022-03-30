@@ -11,7 +11,7 @@ def upload(drive, file, filename):
         drive += "/" + filename
         shutil.copytree(file, drive)
         
-    print("Uploaded finished!")
+    print("Upload finished!")
 
 def download(file, filename, local):
     if os.path.isfile(file):
