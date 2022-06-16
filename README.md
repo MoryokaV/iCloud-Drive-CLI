@@ -1,5 +1,6 @@
 # iCloud-Drive-CLI
 Command line app which makes iCloud Drive accessible from any terminal.  
+This python script does I/O file operations between iCloud Drive and your hard drive  
 
 ## Help Dialog:
   download + filename | -> download specified file/folder from cloud  
@@ -15,5 +16,3 @@ Command line app which makes iCloud Drive accessible from any terminal.
   MacOS:
     - Login with your AppleID in System Preferences  
     - You can find iCloud Drive in Finder  
-    
-This python script does I/O file operations between iCloud Drive and your hard drive  
