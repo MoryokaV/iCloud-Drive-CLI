@@ -7,11 +7,10 @@ import sys
 def root(drive_path):
     root = os.listdir(drive_path)
 
-    maxx = len(max(root))
-
     if not len(root):
         print("The drive is empty.")
     else:
+        maxx = len(max(root))
         for file in root:
             print(file + " " * (maxx - len(file)) + "  |  " + str(displayItemSize(drive_path + "/" + file)))
 
