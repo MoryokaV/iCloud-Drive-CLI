@@ -39,7 +39,7 @@ def initialize():
         os.mkdir(drive_path)
         print("init: 'Transfer' directory has been created in your iCloud Drive.\n")
 
-    print("@ iCloud Drive API \n")
+    print('\33[0;90m' + "@" + '\33[0m' + " iCloud Drive API \n")
 
 
 def helpPopup():
@@ -74,7 +74,7 @@ def selector():
         filepath = os.path.abspath(retrieveFileArg())
         
         extractor.search(filepath, filename)
-        extractor.displayItemSize(filepath)
+        print("Item size: " + extractor.displayItemSize(filepath))
         transfer.upload(drive_path, filepath, filename)
     elif cmd == "download":
         filename = retrieveFileArg()
@@ -82,7 +82,7 @@ def selector():
         local_space = os.getcwd()
 
         extractor.search(filepath, filename)
-        extractor.displayItemSize(filepath)
+        print("Item size: " + extractor.displayItemSize(filepath))
         transfer.download(filepath, filename, local_space)
     elif cmd == "root":
         extractor.root(drive_path)    
@@ -91,7 +91,7 @@ def selector():
         filepath = os.path.join(drive_path, filename)
     
         extractor.search(filepath, filename)
-        extractor.displayItemSize(filepath)
+        print("Item size: " + extractor.displayItemSize(filepath))
         extractor.delete(filepath, filename)
     else:
         print("Unknown command. Type 'help' for more details.")

@@ -7,11 +7,13 @@ import sys
 def root(drive_path):
     root = os.listdir(drive_path)
 
+    maxx = len(max(root))
+
     if not len(root):
         print("The drive is empty.")
     else:
         for file in root:
-            print(file)
+            print(file + " " * (maxx - len(file)) + "  |  " + str(displayItemSize(drive_path + "/" + file)))
 
 def search(path, filename):
     if not os.path.exists(path):
@@ -29,11 +31,11 @@ def displayItemSize(filepath):
         filesize = os.path.getsize(filepath)
 
     if filesize < 1024:
-        print("Item size: " + str(filesize) + " Bytes")
+        return(str(filesize) + " Bytes")
     elif filesize >= 1024 and filesize < 1024**2:
-        print("Item size: " + "{:.2f}".format(filesize / 1024) + " KiB")
+        return("{:.2f}".format(filesize / 1024) + " KiB")
     else:
-        print("Item size: " + "{:.2f}".format(filesize / 1024**2) + "MiB")
+        return("{:.2f}".format(filesize / 1024**2) + " MiB")
 
 def delete(filepath, filename):
     print("")
