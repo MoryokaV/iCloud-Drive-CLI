@@ -39,7 +39,7 @@ def initialize():
         os.mkdir(drive_path)
         print("init: 'Transfer' directory has been created in your iCloud Drive.\n")
 
-    print('\33[0;90m' + "@" + '\33[0m' + " iCloud Drive API \n")
+    print("@ iCloud Drive API \n")
 
 
 def helpPopup():
